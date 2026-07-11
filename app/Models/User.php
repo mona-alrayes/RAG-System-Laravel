@@ -16,6 +16,7 @@ use Laravel\Fortify\Contracts\PasskeyUser;
 use Laravel\Fortify\PasskeyAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Filament\Panel;
 
 /**
@@ -90,5 +91,13 @@ class User extends Authenticatable implements PasskeyUser, FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role === UserRole::Admin;
+    }
+
+    /**
+     * Get the documents associated with the user.
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 }
