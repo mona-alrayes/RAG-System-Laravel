@@ -24,13 +24,15 @@ return new class extends Migration
             $table->unsignedBigInteger('file_size');
             $table->string('sha256', 64)->nullable()->index();
             $table->string('status', 20)->default(DocumentStatus::Pending->value);
-            $table->string('failure_reason')->nullable();
+            $table->text('failure_reason')->nullable();
             $table->unsignedInteger('total_pages')->nullable();
             $table->unsignedBigInteger('total_chunks')->default(0);
             $table->string('qdrant_collection')->nullable();
             $table->timestamp('processed_at')->nullable();
             $table->timestamps();
             $table->index(['user_id', 'created_at']);
+            $table->index(['user_id', 'status']);
+            // $table->unique(['user_id', 'sha256']);
         });
     }
 
