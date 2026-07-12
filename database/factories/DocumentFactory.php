@@ -3,27 +3,29 @@
 namespace Database\Factories;
 
 use App\Enums\DocumentStatus;
+use App\Models\Document;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Document>
+ * @extends Factory<Document>
  */
 class DocumentFactory extends Factory
 {
     public function definition(): array
     {
-        $extension = fake()->randomElement([
-            'pdf',
-            'docx',
-            'txt',
-        ]);
+        $extension = match (fake()->numberBetween(1, 3)) {
+            1 => 'pdf',
+            2 => 'docx',
+            default => 'txt',
+        };
 
         $storedName = fake()->uuid().'.'.$extension;
+        $originalName = fake()->slug(3).'.'.$extension;
 
         return [
             'user_id' => User::factory(),
-            'original_name' => fake()->words(3, true).'.'.$extension,
+            'original_name' => $originalName,
             'stored_name' => $storedName,
             'title' => fake()->sentence(3),
             'file_path' => $storedName,

@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum MassageRole : string
+enum MassageRole: string
 {
     case User = 'user';
     case Assistant = 'assistant';
@@ -14,6 +14,6 @@ enum MassageRole : string
             self::User => 'المستخدم',
             self::Assistant => 'المساعد',
             self::System => 'النظام',
-        };  
+        };
     }
 }

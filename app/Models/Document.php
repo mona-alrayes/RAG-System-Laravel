@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\DocumentStatus;
+use Database\Factories\DocumentFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,11 +25,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'total_pages',
     'total_chunks',
     'qdrant_collection',
-    'processed_at'
+    'processed_at',
 ])]
 class Document extends Model
 {
-    /** @use HasFactory<\Database\Factories\DocumentFactory> */
+    /** @use HasFactory<DocumentFactory> */
     use HasFactory;
 
     protected function casts(): array
@@ -45,6 +46,8 @@ class Document extends Model
 
     /**
      * Get the user that owns the document.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -53,8 +56,10 @@ class Document extends Model
 
     /**
      * Get the chunks associated with the document.
+     *
+     * @return HasMany<DocumentChunk, $this>
      */
-    public function chunks():HasMany
+    public function chunks(): HasMany
     {
         return $this->hasMany(DocumentChunk::class);
     }

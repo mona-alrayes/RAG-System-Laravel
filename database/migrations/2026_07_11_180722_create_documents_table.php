@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('file_type', 20);
             $table->string('mime_type', 100);
             $table->unsignedBigInteger('file_size');
-            $table->string('sha256',64)->nullable()->index();
+            $table->string('sha256', 64)->nullable()->index();
             $table->string('status', 20)->default(DocumentStatus::Pending->value);
             $table->string('failure_reason')->nullable();
             $table->unsignedInteger('total_pages')->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('qdrant_collection')->nullable();
             $table->timestamp('processed_at')->nullable();
             $table->timestamps();
-            $table->index(['user_id','created_at']);
+            $table->index(['user_id', 'created_at']);
         });
     }
 

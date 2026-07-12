@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum DocumentStatus : string
+enum DocumentStatus: string
 {
     case Pending = 'pending';
     case Processing = 'processing';
@@ -16,7 +16,6 @@ enum DocumentStatus : string
             self::Processing => 'قيد المعالجة',
             self::Completed => 'اكتملت المعالجة',
             self::Failed => 'فشلت المعالجة',
-        };  
+        };
     }
 }
-

@@ -15,20 +15,11 @@ class DocumentController extends Controller
         //
     }
 
-    public function statuses()
-    {
+    public function statuses() {}
 
-    }
+    public function download() {}
 
-    public function download()
-    {
-
-    }
-
-    public function reporcess()
-    {
-        
-    }
+    public function reprocess() {}
 
     /**
      * Show the form for creating a new resource.
