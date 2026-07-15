@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'ai_services' => [
+        'enabled' => env('AI_SERVICE_ENABLED', false),
+        'base_url' => env('AI_SERVICE_URL', 'http://localhost:8100'),
+        'timeout' => env('AI_SERVICE_TIMEOUT', 600),
+        'max_chunks_per_document' => env('AI_SERVICE_MAX_CHUNKS_PER_DOCUMENT', 100000),
+    ],
+
 ];
